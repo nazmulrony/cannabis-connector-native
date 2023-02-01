@@ -23,15 +23,15 @@ const CustomDrawer = (props) => {
                 </View>
             </View>
             <DrawerContentScrollView {...props}>
-                <DrawerItemList {...props} />
-                {/* <DrawerItem
+                {/* <DrawerItemList {...props} /> */}
+                <DrawerItem
                     label={"Auction"}
                     onPress={() => props.navigation.navigate("AuctionScreen")}
                 />
                 <DrawerItem
                     label={"Orders"}
                     onPress={() => props.navigation.navigate("OrdersScreen")}
-                /> */}
+                />
             </DrawerContentScrollView>
         </View>
     );
