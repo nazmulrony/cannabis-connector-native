@@ -6,6 +6,11 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import CustomDrawer from "./CustomDrawer";
 import AuctionScreen from "../screens/AuctionScreen";
 import OrdersScreen from "../screens/OrdersScreen";
+import AllAuctionScreen from "../screens/AllAuctionScreen";
+import MyAuctionScreen from "../screens/MyAuctionScreen";
+import ProposalScreen from "../screens/ProposalScreen";
+import ReceivedOrdersScreen from "../screens/ReceivedOrdersScreen";
+import MyOrdersScreen from "../screens/MyOrdersScreen";
 
 const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
@@ -35,7 +40,20 @@ const DrawerNavigator = () => {
                 component={BottomTabNavigator}
             />
             <Drawer.Screen name="AuctionScreen" component={AuctionScreen} />
-            <Drawer.Screen name="OrdersScreen" component={OrdersScreen} />
+            <Drawer.Screen
+                name="AllAuctionsScreen"
+                component={AllAuctionScreen}
+            />
+            <Drawer.Screen
+                name="MyAuctionsScreen"
+                component={MyAuctionScreen}
+            />
+            <Drawer.Screen name="ProposalScreen" component={ProposalScreen} />
+            <Drawer.Screen
+                name="ReceivedOrdersScreen"
+                component={ReceivedOrdersScreen}
+            />
+            <Drawer.Screen name="MyOrdersScreen" component={MyOrdersScreen} />
         </Drawer.Navigator>
     );
 };
