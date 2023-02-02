@@ -9,7 +9,7 @@ import Animated, {
 import { GlobalStyles } from "../constants/style";
 import { useNavigation } from "@react-navigation/native";
 
-const TestDropDown = ({ label, screens, icon, onPress, activeParent }) => {
+const TestDropDown = ({ label, screens, icon, onPress, activeLabel }) => {
     const [activeScreen, setActiveScreen] = useState(null);
     const [toggleMenu, setToggleMenu] = useState(false);
     const progress = useSharedValue(0);
@@ -48,7 +48,7 @@ const TestDropDown = ({ label, screens, icon, onPress, activeParent }) => {
                     <Text
                         style={[
                             styles.label,
-                            activeParent === label && styles.active,
+                            activeLabel === label && styles.active,
                         ]}
                     >
                         {label}{" "}
@@ -59,7 +59,7 @@ const TestDropDown = ({ label, screens, icon, onPress, activeParent }) => {
                         name="chevron-down"
                         size={22}
                         color={
-                            activeParent === label
+                            activeLabel === label
                                 ? GlobalStyles.colors.primary500
                                 : "black"
                         }
@@ -69,7 +69,7 @@ const TestDropDown = ({ label, screens, icon, onPress, activeParent }) => {
                         name="chevron-up"
                         size={22}
                         color={
-                            activeParent === label
+                            activeLabel === label
                                 ? GlobalStyles.colors.primary500
                                 : "black"
                         }
@@ -86,32 +86,32 @@ const TestDropDown = ({ label, screens, icon, onPress, activeParent }) => {
                         onPress={() => {
                             navigation.navigate(screen.target);
                             onPress(label);
-                            setActiveScreen(screen.label);
+                            setActiveScreen(screen.name);
                         }}
                         key={index}
                         style={[
                             styles.screenLabel,
-                            activeParent === label &&
-                                activeScreen === screen.label &&
+                            activeLabel === label &&
+                                activeScreen === screen.name &&
                                 styles.activeScreenLabel,
                         ]}
                     >
                         <View
                             style={
-                                activeParent === label &&
-                                activeScreen === screen.label &&
+                                activeLabel === label &&
+                                activeScreen === screen.name &&
                                 styles.activeBorder
                             }
                         ></View>
                         <Text
                             style={[
                                 styles.text,
-                                activeParent === label &&
-                                    activeScreen === screen.label &&
+                                activeLabel === label &&
+                                    activeScreen === screen.name &&
                                     styles.active,
                             ]}
                         >
-                            {screen.label}
+                            {screen.name}
                         </Text>
                     </Pressable>
                 ))}
@@ -127,7 +127,6 @@ const styles = StyleSheet.create({
     rootContainer: {
         marginHorizontal: 20,
         marginVertical: 12,
-        // marginBottom: 24,
         overflow: "hidden",
     },
     labelContainer: {
@@ -152,10 +151,8 @@ const styles = StyleSheet.create({
     screenLabel: {
         fontSize: 14,
         height: 40,
-        // marginVertical: 8,
         flexDirection: "row",
         alignItems: "center",
-        // backgroundColor: GlobalStyles.colors.gray300,
     },
     activeScreenLabel: {
         backgroundColor: GlobalStyles.colors.primary50,

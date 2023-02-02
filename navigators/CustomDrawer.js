@@ -6,24 +6,23 @@ import {
     DrawerItemList,
 } from "@react-navigation/drawer";
 import { GlobalStyles } from "../constants/style";
-import AnimatedDropDownMenu from "./AnimatedDropDownMenu";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import TestDropDown from "./TestDropDown";
 
 const auctionScreens = [
-    { label: "All Auctions", target: "AllAuctionsScreen" },
-    { label: "My Auctions", target: "MyAuctionsScreen" },
-    { label: "Proposal", target: "ProposalScreen" },
+    { name: "All Auctions", target: "AllAuctionsScreen" },
+    { name: "My Auctions", target: "MyAuctionsScreen" },
+    { name: "Proposal", target: "ProposalScreen" },
 ];
 
 const ordersScreen = [
-    { label: "Received Orders", target: "ReceivedOrdersScreen" },
-    { label: "My Orders", target: "MyOrdersScreen" },
+    { name: "Received Orders", target: "ReceivedOrdersScreen" },
+    { name: "My Orders", target: "MyOrdersScreen" },
 ];
 
 const CustomDrawer = (props) => {
     const [activeScreen, setActiveScreen] = useState(null);
-    const [activeParent, setActiveParent] = useState(null);
+    const [activeLabel, setActiveLabel] = useState(null);
     // console.log(activeParent);
     return (
         <View style={styles.container}>
@@ -40,9 +39,7 @@ const CustomDrawer = (props) => {
                 </View>
             </View>
             <DrawerContentScrollView {...props}>
-                {/* <DrawerItemList {...props} /> */}
-
-                <DrawerItem
+                {/* <DrawerItem
                     label={"Orders"}
                     onPress={() => {
                         props.navigation.navigate("OrdersScreen");
@@ -50,65 +47,19 @@ const CustomDrawer = (props) => {
                         setActiveParent(null);
                     }}
                     focused={activeScreen === "Orders"}
-                />
-                {/* <AnimatedDropDownMenu
-                    label={"Auction"}
-                    activeParent={activeParent}
-                    icon={
-                        <FontAwesome
-                            name="gavel"
-                            size={18}
-                            color={
-                                activeParent === "Auction"
-                                    ? GlobalStyles.colors.primary500
-                                    : "black"
-                            }
-                        />
-                    }
-                >
-                    <DrawerItem
-                        label={"All Auctions"}
-                        onPress={() => {
-                            props.navigation.navigate("AllAuctionsScreen");
-                            setActiveScreen("All Auction");
-                            setActiveParent("Auction");
-                        }}
-                        style={{
-                            borderLeftWidth: 3,
-                            borderLeftColor: "#4CAF50",
-                        }}
-                        focused={activeScreen === "All Auction"}
-                    />
-                    <DrawerItem
-                        label={"My Auctions"}
-                        onPress={() => {
-                            props.navigation.navigate("MyAuctionsScreen");
-                            setActiveScreen("My Auction");
-                            setActiveParent("Auction");
-                        }}
-                        focused={activeScreen === "My Auction"}
-                    />
-                    <DrawerItem
-                        label={"Proposal"}
-                        onPress={() => {
-                            props.navigation.navigate("ProposalScreen");
-                            setActiveScreen("Proposal");
-                            setActiveParent("Auction");
-                        }}
-                        focused={activeScreen === "Proposal"}
-                    />
-                </AnimatedDropDownMenu> */}
+                /> */}
+
                 <TestDropDown
                     label={"Auction"}
                     screens={auctionScreens}
-                    onPress={setActiveParent}
-                    activeParent={activeParent}
+                    onPress={setActiveLabel}
+                    activeLabel={activeLabel}
                     icon={
                         <FontAwesome
                             name="gavel"
                             size={18}
                             color={
-                                activeParent === "Auction" ? "#4CAF50" : "black"
+                                activeLabel === "Auction" ? "#4CAF50" : "black"
                             }
                         />
                     }
@@ -116,19 +67,19 @@ const CustomDrawer = (props) => {
                 <TestDropDown
                     label={"Orders"}
                     screens={ordersScreen}
-                    onPress={setActiveParent}
-                    activeParent={activeParent}
+                    onPress={setActiveLabel}
+                    activeLabel={activeLabel}
                     icon={
                         <AntDesign
                             name="shoppingcart"
                             size={18}
                             color={
-                                activeParent === "Orders" ? "#4CAF50" : "black"
+                                activeLabel === "Orders" ? "#4CAF50" : "black"
                             }
                         />
                     }
                 />
-                <DrawerItem
+                {/* <DrawerItem
                     label={"Orders"}
                     onPress={() => {
                         props.navigation.navigate("OrdersScreen");
@@ -154,7 +105,7 @@ const CustomDrawer = (props) => {
                         setActiveParent(null);
                     }}
                     focused={activeScreen === "Orders"}
-                />
+                /> */}
             </DrawerContentScrollView>
         </View>
     );
